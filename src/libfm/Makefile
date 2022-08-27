@@ -12,7 +12,7 @@ libFM: libfm.o
 	g++ -O3 -Wall libfm.o -o $(BIN_DIR)libFM
 
 %.o: %.cpp
-	g++ -O3 -Wall -c $< -o $@
+	g++ -O3 -fPIE -Wall -c $< -o $@
 
 clean:	clean_lib
 	mkdir -p $(BIN_DIR)
