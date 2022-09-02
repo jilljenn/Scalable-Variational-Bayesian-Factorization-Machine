@@ -82,8 +82,8 @@ class fm_learn_sgd_online: public fm_learn_sgd {
 				{
 					std::ostringstream sstream;
 					sstream << training_file <<"batch" << z+1;
-					const char* file = (sstream.str()).c_str();
-					batch[z].open(file, ios::out | ios::trunc);
+					std::string file = sstream.str();
+					batch[z].open(file.c_str(), ios::out | ios::trunc);
 				}
 				uint index = 0;
 				ifstream train_file(training_file.c_str());

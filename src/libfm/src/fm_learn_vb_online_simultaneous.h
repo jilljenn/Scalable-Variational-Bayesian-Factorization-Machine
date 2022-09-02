@@ -78,8 +78,8 @@ class fm_learn_vb_online_simultaneous : public fm_learn_vb_online {
                 {
 					std::ostringstream sstream;
 					sstream << training_file <<"batch" << i+1;
-					const char* file = (sstream.str()).c_str();
-					batch[i].open(file, ios::out | ios::trunc);
+					std::string file = sstream.str();
+					batch[i].open(file.c_str(), ios::out | ios::trunc);
 				}
 				uint index = 0;
 				ifstream train_file(training_file.c_str());
@@ -282,8 +282,8 @@ class fm_learn_vb_online_simultaneous : public fm_learn_vb_online {
                                  {
                                      std::ostringstream sstream;
                                      sstream << training_file.c_str() <<"batch" << q+1;
-                                     const char* file = (sstream.str()).c_str();
-                                     remove(file);
+                                     std::string file = sstream.str();
+                                     remove(file.c_str());
                                  }
 			}
 			delete [] shuffle;
