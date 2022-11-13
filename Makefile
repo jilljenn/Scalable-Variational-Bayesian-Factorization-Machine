@@ -5,9 +5,10 @@ libFM:
 	cd src/libfm; make libFM
 
 clean:
-	# cd src/libfm; make clean
-	rm results/mcmc_100k.csv
+	cd src/libfm; make clean
+	# rm results/mcmc_100k.csv
 
+.PHONY: results/ovbfm_100k.csv results/mcmc_100k.csv results/ovbfm_100.csv results/mcmc_100.csv
 # all: results/ovbfm_100k results/mcmc_100k results/ovbfm_1M results/mcmc_1M results/ovbfm_10M results/mcmc_10M
 
 results/ovbfm_100k.csv:
