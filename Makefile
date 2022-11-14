@@ -11,11 +11,14 @@ clean:
 .PHONY: results/ovbfm_100k.csv results/mcmc_100k.csv results/ovbfm_100.csv results/mcmc_100.csv
 # all: results/ovbfm_100k results/mcmc_100k results/ovbfm_1M results/mcmc_1M results/ovbfm_10M results/mcmc_10M
 
-results/ovbfm_100k.csv:
-	cd bin && time ./libFM -task r -train ../../vae/data/movie100k/movie100k.trainval_libfm -test ../../vae/data/movie100k/movie100k.test_libfm -dim '1,1,20' -method vb_online -batch 200 -iter 200 -rlog ../results/ovbfm_100k.csv
+results/ovbfm_100k.csv:  # 2:32 pour 200
+	cd bin && time ./libFM -task r -train ../../vae/data/movie100k/movie100k.trainval_libfm -test ../../vae/data/movie100k/movie100k.test_libfm -dim '1,1,20' -method vb_online -batch 200 -iter 200 -rlog ../results/ovbfm_100k.csv -out ../results/ovbfm_pred_100k.csv
 
-results/mcmc_100k.csv:  # 8.64 s
-	cd bin && time ./libFM -verbosity 1 -task r -train ../../vae/data/movie100k/movie100k.trainval_libfm -test ../../vae/data/movie100k/movie100k.test_libfm -dim '1,1,20' -method mcmc -iter 1000 -rlog ../results/mcmc_100k.csv -out ../results/mcmc_pred_100k.csv
+results/vbfm_100k.csv:  # 21.67s pour 200
+	cd bin && time ./libFM -task r -train ../../vae/data/movie100k/movie100k.trainval_libfm -test ../../vae/data/movie100k/movie100k.test_libfm -dim '1,1,20' -method vb -iter 200 -rlog ../results/vbfm_100k.csv -out ../results/vbfm_pred_100k.csv
+
+results/mcmc_100k.csv:  # 8.64s pour 200, 57s pour 1000
+	cd bin && time ./libFM -verbosity 1 -task r -train ../../vae/data/movie100k/movie100k.trainval_libfm -test ../../vae/data/movie100k/movie100k.test_libfm -dim '1,1,20' -method mcmc -iter 200 -rlog ../results/mcmc_100k.csv -out ../results/mcmc_pred_100k.csv
 
 results/ovbfm_100k:
 	cd bin && time ./libFM -task r -train ../data/sa100k5.train_libfm -test ../data/sa100k5.test_libfm -dim '1,1,20' -method vb_online -batch 200 -iter 200 -rlog ../results/ovbfm_100k
