@@ -11,10 +11,11 @@ embedding_size = sys.argv[3]
 
 
 truth = pd.read_csv(f'../vae/data/{data}/{data}.test_libfm',
-					names=('outcome', 'user', 'item'), sep=' ')
+					names=('outcome', 'user', 'item', 'extra'), sep=' ')
 for method in methods.split(','):
 	pred = pd.read_csv(f'results/pred_{method}_{data}_{embedding_size}.csv',
 					   names=('pred',))
+	print(truth)
 	y_true = truth['outcome']
 	y_pred = pred['pred']
 	try:

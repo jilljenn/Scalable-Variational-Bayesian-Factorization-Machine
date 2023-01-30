@@ -6,7 +6,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Run VFM baselines')
 parser.add_argument('data', type=str, nargs='?', default='fraction')
 # parser.add_argument('--regression', type=bool, nargs='?', const=True, default=False)
-# parser.add_argument('--classification', type=bool, nargs='?', const=True, default=False)
+parser.add_argument('--classification', type=bool, nargs='?', const=True, default=False)
 parser.add_argument('--d', type=int, nargs='?', default=3)
 parser.add_argument('--nb_batches', type=str, nargs='?', default='1')
 parser.add_argument('--max_epochs', type=str, nargs='?', default='200')
@@ -14,7 +14,7 @@ parser.add_argument('--method', type=str, nargs='?', default='mcmc')
 options = parser.parse_args()
 
 DATA = sys.argv[1]
-is_classification = DATA.endswith('binary') or DATA.endswith('100') or DATA.endswith('1000')
+is_classification = DATA.endswith('binary') or DATA.endswith('100') or DATA.endswith('1000') or options.classification
 PATH = Path(f'../vae/data/{DATA}/')
 EMBEDDING_SIZE = options.d
 RESULTS_PATH = Path('results')

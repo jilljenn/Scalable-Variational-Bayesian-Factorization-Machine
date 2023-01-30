@@ -300,8 +300,9 @@ int main(int argc, char **argv) {
 			fml->validation = validation;
 			((fm_learn_mcmc*)fml)->num_iter = cmdline.getValue(param_num_iter, 100);
 			((fm_learn_mcmc*)fml)->num_eval_cases = cmdline.getValue(param_num_eval_cases, test.num_cases);
-
 			((fm_learn_mcmc*)fml)->do_sample = cmdline.getValue(param_do_sampling, true);
+			// ((fm_learn_mcmc*)fml)->do_sample = cmdline.getValue(param_do_sampling, false);
+			cout << ((fm_learn_mcmc*)fml)->do_sample << endl;
 			((fm_learn_mcmc*)fml)->do_multilevel = cmdline.getValue(param_do_multilevel, true);
 		} else if (! cmdline.getValue(param_method).compare("vb")) {
 			fm.w.init_normal(fm.init_mean, fm.init_stdev);
